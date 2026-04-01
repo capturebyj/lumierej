@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumiereJ — 모든 순간의 빛을 담다</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #FAF7F2;
+            --warm-white: #FFFDF9;
+            --champagne: #E8D5B7;
+            --gold-light: #D4A96A;
+            --gold: #C4924A;
+            --rose: #D4A0A0;
+            --rose-light: #F0E0E0;
+            --sage: #B5C4B1;
+            --charcoal: #2A2825;
+            --warm-gray: #6B6560;
+            --soft-gray: #E8E4DF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Serif KR', 'Cormorant Garamond', serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* ============ LANDING ============ */
+        #landingPage {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #1a1714;
+            transition: opacity 1s ease;
+            overflow: hidden;
+        }
+        #landingPage.hidden { opacity: 0; pointer-events: none; }
+
+        .landing-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1920&q=80') center/cover no-repeat;
+            opacity: 0.55;
+            transform: scale(1.04);
+            animation: slowZoom 14s ease-out forwards;
+        }
+        @keyframes slowZoom { to { transform: scale(1); } }
+
+        .landing-light {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(212,169,106,0.18) 0%, transparent 70%);
+        }
+
+        .landing-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1.8s ease forwards;
+        }
+
+        .landing-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            color: var(--champagne);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+
+        .landing-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 10px;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.25);
+        }
+
+        .landing-logo span {
+            color: var(--gold-light);
+        }
+
+        .landing-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+            letter-spacing: 2px;
+            margin-bottom: 3.5rem;
+        }
+
+        .landing-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 1.2rem auto;
+            opacity: 0.7;
+        }
+
+        .landing-btn {
+            display: inline-block;
+            padding: 1rem 3.2rem;
+            border: 1px solid rgba(255,255,255,0.5);
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            background: transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .landing-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.08);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .landing-btn:hover::before { transform: translateX(0); }
+        .landing-btn:hover {
+            border-color: rgba(255,255,255,0.9);
+            letter-spacing: 5px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ MAIN SITE ============ */
+        #mainSite { opacity: 0; transition: opacity 1.2s ease; }
+        #mainSite.visible { opacity: 1; }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 247, 242, 0.94);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(196,146,74,0.15);
+            transition: padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        nav.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 20px rgba(42,40,37,0.07);
+        }
+
+        .nav-inner {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            letter-spacing: 3px;
+        }
+        .nav-logo span { color: var(--gold); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.8rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--warm-gray);
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            padding: 0.6rem 1.8rem;
+            background: var(--charcoal);
+            color: #fff !important;
+            font-size: 0.78rem !important;
+            letter-spacing: 2px !important;
+            transition: background 0.3s ease !important;
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--gold) !important; color: #fff !important; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--ivory);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+        }
+        .mobile-menu a:hover { color: var(--gold); }
+
+        /* ============ HERO ============ */
+        #hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            background: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 5rem 4rem 6rem;
+            position: relative;
+        }
+
+        .hero-left::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 0;
+            width: 3px;
+            height: 55%;
+            background: linear-gradient(to bottom, transparent, var(--champagne), transparent);
+        }
+
+        .hero-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2rem;
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--warm-gray);
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            max-width: 420px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.8rem;
+            background: var(--charcoal);
+            color: #fff;
+            border: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.35s ease;
+        }
+        .btn-primary:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(196,146,74,0.3);
+        }
+
+        .btn-secondary {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: var(--warm-gray);
+            text-decoration: none;
+            border-bottom: 1px solid var(--champagne);
+            padding-bottom: 2px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 8s ease;
+        }
+        .hero-right:hover img { transform: scale(1.04); }
+
+        .hero-right-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(250,247,242,0.3) 0%, transparent 30%);
+        }
+
+        .hero-float-badge {
+            position: absolute;
+            bottom: 2.5rem;
+            left: -2rem;
+            background: var(--warm-white);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 32px rgba(42,40,37,0.1);
+            min-width: 200px;
+            animation: floatBadge 4s ease-in-out infinite;
+        }
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .hero-float-badge .badge-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .hero-float-badge .badge-text {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        /* ============ SECTION COMMON ============ */
+        section { padding: 7rem 0; }
+        .container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+        .section-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1.3;
+        }
+        .section-title em { font-style: italic; color: var(--gold); }
+        .section-line {
+            width: 50px;
+            height: 1px;
+            background: var(--champagne);
+            margin: 1.2rem auto 0;
+        }
+
+        /* ============ ABOUT STRIP ============ */
+        #about {
+            background: var(--charcoal);
+            padding: 5rem 0;
+        }
+        .about-inner {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .about-image-wrap {
+            position: relative;
+        }
+        .about-image-wrap img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+        }
+        .about-image-wrap::before {
+            content: '';
+            position: absolute;
+            top: -1.5rem;
+            left: -1.5rem;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(196,146,74,0.35);
+            z-index: -1;
+        }
+        .about-text { color: rgba(255,255,255,0.85); }
+        .about-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            letter-spacing: 5px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .about-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            line-height: 1.35;
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+        .about-heading em { font-style: italic; color: var(--gold-light); }
+        .about-body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            line-height: 2.1;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 2.5rem;
+        }
+        .about-stats {
+            display: flex;
+            gap: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-item { }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.45);
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+        }
+
+        /* ============ SERVICES ============ */
+        #services { background: var(--warm-white); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5px;
+            background: var(--soft-gray);
+        }
+
+        .service-card {
+            background: var(--warm-white);
+            padding: 3rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .service-card:hover { background: var(--ivory); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(42,40,37,0.08); }
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
+            display: block;
+        }
+        .service-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .service-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .service-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.92rem;
+            color: var(--warm-gray);
+            line-height: 1.8;
+        }
+        .service-items {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .service-tag {
+            font-size: 0.72rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--champagne);
+            color: var(--warm-gray);
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .service-card:hover .service-tag {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ============ PORTFOLIO ============ */
+        #portfolio { background: var(--ivory); }
+
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 0.6rem 1.8rem;
+            border: 1px solid var(--soft-gray);
+            background: transparent;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--warm-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--charcoal);
+            color: #fff;
+            border-color: var(--charcoal);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 1rem;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--soft-gray);
+        }
+        .portfolio-item.tall { grid-row: span 2; }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 280px;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+        .portfolio-item:hover img { transform: scale(1.06); }
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(42,40,37,0);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            transition: background 0.4s ease;
+        }
+        .portfolio-item:hover .portfolio-overlay { background: rgba(42,40,37,0.45); }
+        .portfolio-info {
+            transform: translateY(8px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .portfolio-item:hover .portfolio-info { transform: translateY(0); opacity: 1; }
+        .portfolio-info-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .portfolio-info-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 2px;
+        }
+
+        /* ============ PACKAGES ============ */
+        #packages {
+            background: linear-gradient(160deg, var(--charcoal) 0%, #3a342e 100%);
+            padding: 8rem 0;
+        }
+        #packages .section-title { color: #fff; }
+        #packages .section-eyebrow { color: var(--gold-light); }
+        #packages .section-line { background: rgba(212,169,106,0.4); }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .package-card {
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.03);
+            overflow: hidden;
+        }
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: transparent;
+            transition: background 0.4s;
+        }
+        .package-card:hover {
+            border-color: rgba(196,146,74,0.4);
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-5px);
+        }
+        .package-card:hover::before { background: var(--gold); }
+        .package-card.featured {
+            border-color: rgba(196,146,74,0.5);
+            background: rgba(196,146,74,0.08);
+        }
+        .package-card.featured::before { background: var(--gold); }
+
+        .package-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.3rem 1rem;
+            border: 1px solid rgba(196,146,74,0.5);
+            color: var(--gold-light);
+            margin-bottom: 2rem;
+        }
+        .package-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .package-name-kr {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .package-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .package-price-sub {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+        }
+        .package-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin-bottom: 2rem;
+        }
+        .package-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+        .package-features li {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.65);
+            padding: 0.5rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+        .package-features li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 0.7rem;
+            top: 0.7rem;
+        }
+        .package-btn {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.8);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.35s ease;
+        }
+        .package-btn:hover, .package-card.featured .package-btn {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+        }
+
+        /* ============ LIFECYCLE ============ */
+        #lifecycle { background: var(--rose-light); padding: 6rem 0; }
+        .lifecycle-strip {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow: hidden;
+        }
+        .lifecycle-item {
+            flex: 1;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            position: relative;
+            cursor: default;
+            transition: background 0.3s;
+        }
+        .lifecycle-item:hover { background: rgba(255,255,255,0.5); }
+        .lifecycle-item:not(:last-child)::after {
+            content: '·····';
+            position: absolute;
+            right: -0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--rose);
+            letter-spacing: 2px;
+            font-size: 1rem;
+        }
+        .lifecycle-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .lifecycle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        .lifecycle-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.82rem;
+            color: var(--warm-gray);
+            letter-spacing: 1px;
+        }
+        .lifecycle-banner {
+            text-align: center;
+            padding: 4rem 2.5rem 2rem;
+        }
+        .lifecycle-banner-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1.5;
+        }
+        .lifecycle-banner-text em { font-style: italic; color: var(--gold); }
+
+        /* ============ REVIEW ============ */
+        #reviews { background: var(--warm-white); }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .review-card {
+            padding: 2.5rem;
+            border: 1px solid var(--soft-gray);
+            position: relative;
+            background: var(--ivory);
+            transition: box-shadow 0.3s;
+        }
+        .review-card:hover { box-shadow: 0 8px 30px rgba(42,40,37,0.07); }
+        .review-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--champagne);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .review-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--warm-gray);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        .review-author {
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+        .review-type {
+            font-size: 0.72rem;
+            color: rgba(107,101,96,0.5);
+            letter-spacing: 1px;
+            margin-top: 0.2rem;
+        }
+
+        /* ============ BOOKING CTA ============ */
+        #booking-cta {
+            background: var(--ivory);
+            padding: 7rem 0;
+        }
+        .booking-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        .booking-inner .section-eyebrow { display: block; margin-bottom: 1rem; }
+        .booking-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+        .booking-title em { font-style: italic; color: var(--gold); }
+        .booking-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--warm-gray);
+            line-height: 1.9;
+            margin-bottom: 3rem;
+        }
+        .booking-actions { display: flex; gap: 1.2rem; justify-content: center; }
+        .btn-kakao {
+            padding: 1rem 2.5rem;
+            background: #FEE500;
+            color: #3A1D1D;
+            border: none;
+            font-family: 'Noto Serif KR', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        .btn-kakao:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(254,229,0,0.4); }
+        .btn-insta {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--soft-gray);
+            color: var(--charcoal);
+            font-family: 'Noto Serif KR', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        .btn-insta:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--charcoal);
+            padding: 4rem 0 2.5rem;
+        }
+        .footer-inner {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2rem;
+        }
+        .footer-brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #fff;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+        .footer-brand-name span { color: var(--gold-light); }
+        .footer-brand-tag {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        .footer-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.9;
+        }
+        .footer-col-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.45);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--gold-light); }
+        .footer-contact-item {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-copy {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 1px;
+        }
+        .footer-lavella {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.3);
+        }
+        .footer-lavella a {
+            color: var(--gold-light);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .footer-lavella a:hover { opacity: 1; }
+
+        /* ============ SCROLL ANIMATIONS ============ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 3.2rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .packages-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+            .reviews-grid { grid-template-columns: 1fr 1fr; }
+            .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .about-image-wrap { max-width: 380px; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            #hero { grid-template-columns: 1fr; height: auto; }
+            .hero-left {
+                padding: 7rem 2rem 3rem;
+                order: 2;
+            }
+            .hero-left::after { display: none; }
+            .hero-right { order: 1; height: 55vh; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-float-badge { display: none; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .services-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr 1fr; }
+            .portfolio-item.tall { grid-row: span 1; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .lifecycle-strip { flex-direction: column; }
+            .lifecycle-item::after { display: none; }
+            .booking-title { font-size: 2rem; }
+            .booking-actions { flex-direction: column; align-items: center; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            section { padding: 4.5rem 0; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landingPage">
+    <div class="landing-bg"></div>
+    <div class="landing-light"></div>
+    <div class="landing-content">
+        <p class="landing-eyebrow">Photographer · 임준혁</p>
+        <h1 class="landing-logo">Lumière<span>J</span></h1>
+        <div class="landing-divider"></div>
+        <p class="landing-tagline">모든 순간의 빛을 담다</p>
+        <button class="landing-btn" onclick="enterSite()">Enter ↓</button>
+    </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="mainSite">
+
+    <!-- NAV -->
+    <nav id="mainNav">
+        <div class="nav-inner">
+            <div class="nav-logo">Lumière<span>J</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">작가소개</a></li>
+                <li><a href="#services">촬영종류</a></li>
+                <li><a href="#portfolio">포트폴리오</a></li>
+                <li><a href="#packages">패키지</a></li>
+                <li><a href="#reviews">후기</a></li>
+                <li><a href="#booking-cta" class="nav-cta">예약문의</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMenu()">작가소개</a>
+        <a href="#services" onclick="closeMenu()">촬영종류</a>
+        <a href="#portfolio" onclick="closeMenu()">포트폴리오</a>
+        <a href="#packages" onclick="closeMenu()">패키지</a>
+        <a href="#reviews" onclick="closeMenu()">후기</a>
+        <a href="#booking-cta" onclick="closeMenu()">예약문의</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-left">
+            <p class="hero-eyebrow">Seoul · Gyeonggi · Nationwide</p>
+            <h1 class="hero-title">
+                당신의 빛나는<br>
+                <em>모든 순간</em>을<br>
+                담습니다
+            </h1>
+            <p class="hero-desc">
+                프로필부터 돌잔치, 가족사진까지 —<br>
+                삶의 모든 빛나는 순간을 아름답게 기록합니다
+            </p>
+            <div class="hero-actions">
+                <a href="#services" class="btn-primary">촬영 보기</a>
+                <a href="#booking-cta" class="btn-secondary">예약 문의하기 →</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80" alt="LumiereJ 대표 이미지">
+            <div class="hero-right-overlay"></div>
+            <div class="hero-float-badge">
+                <div class="badge-num">200+</div>
+                <div class="badge-text">촬영 완료</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIFECYCLE STRIP -->
+    <div id="lifecycle" style="padding: 0;">
+        <div class="lifecycle-banner">
+            <p class="lifecycle-banner-text">
+                첫 미소부터 결혼식 날까지,<br>
+                <em>생애의 모든 빛나는 장면</em>을 함께합니다
+            </p>
+        </div>
+        <div class="lifecycle-strip container">
+            <div class="lifecycle-item">
+                <span class="lifecycle-icon">👶</span>
+                <div class="lifecycle-title">백일 · 돌잔치</div>
+                <div class="lifecycle-sub">새 생명의 시작</div>
+            </div>
+            <div class="lifecycle-item">
+                <span class="lifecycle-icon">👨‍👩‍👧</span>
+                <div class="lifecycle-title">가족사진</div>
+                <div class="lifecycle-sub">함께하는 일상</div>
+            </div>
+            <div class="lifecycle-item">
+                <span class="lifecycle-icon">🎓</span>
+                <div class="lifecycle-title">졸업 · 성장</div>
+                <div class="lifecycle-sub">새로운 시작</div>
+            </div>
+            <div class="lifecycle-item">
+                <span class="lifecycle-icon">🌸</span>
+                <div class="lifecycle-title">프로필 · 커플</div>
+                <div class="lifecycle-sub">나를 기록하기</div>
+            </div>
+            <div class="lifecycle-item">
+                <span class="lifecycle-icon">💍</span>
+                <div class="lifecycle-title">웨딩스냅</div>
+                <div class="lifecycle-sub">가장 빛나는 날</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about-inner">
+            <div class="about-image-wrap fade-up">
+                <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="작가 임준혁">
+            </div>
+            <div class="about-text fade-up">
+                <p class="about-label">About the Photographer</p>
+                <h2 class="about-heading">
+                    빛을 찾는 사람,<br>
+                    <em>임준혁</em>입니다
+                </h2>
+                <p class="about-body">
+                    Lumière는 프랑스어로 '빛'을 의미합니다.<br><br>
+                    저는 매 순간 그 장면만의 빛을 찾습니다.<br>
+                    아이의 웃음에서 번지는 따뜻한 빛,<br>
+                    두 사람이 마주보는 순간의 황금빛,<br>
+                    가족이 함께 웃는 저녁의 부드러운 빛.<br><br>
+                    그 빛을 당신의 기억 속에 영원히 남기는 것,<br>
+                    그것이 제가 카메라를 드는 이유입니다.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-num">200+</div>
+                        <div class="stat-label">촬영 완료</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">4</div>
+                        <div class="stat-label">촬영 카테고리</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label">재방문 의향</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-eyebrow">Services</span>
+                <h2 class="section-title">촬영 <em>종류</em></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-up">
+                    <span class="service-icon">✨</span>
+                    <div class="service-num">01 — Life Snap</div>
+                    <div class="service-name">라이프스냅</div>
+                    <div class="service-sub">나를 가장 빛나게, 우리를 가장 아름답게</div>
+                    <div class="service-items">
+                        <span class="service-tag">프로필</span>
+                        <span class="service-tag">1인 모델</span>
+                        <span class="service-tag">커플스냅</span>
+                        <span class="service-tag">우정스냅</span>
+                    </div>
+                </div>
+                <div class="service-card fade-up">
+                    <span class="service-icon">👨‍👩‍👧</span>
+                    <div class="service-num">02 — Family Snap</div>
+                    <div class="service-name">패밀리스냅</div>
+                    <div class="service-sub">가족의 소중한 순간을 영원히</div>
+                    <div class="service-items">
+                        <span class="service-tag">돌잔치</span>
+                        <span class="service-tag">가족사진</span>
+                        <span class="service-tag">만삭촬영</span>
+                        <span class="service-tag">백일스냅</span>
+                    </div>
+                </div>
+                <div class="service-card fade-up">
+                    <span class="service-icon">💍</span>
+                    <div class="service-num">03 — Wedding Snap</div>
+                    <div class="service-name">웨딩스냅</div>
+                    <div class="service-sub">가장 빛나는 날의 모든 감동을</div>
+                    <div class="service-items">
+                        <span class="service-tag">야외웨딩</span>
+                        <span class="service-tag">브라이덜</span>
+                        <span class="service-tag">허니문</span>
+                    </div>
+                </div>
+                <div class="service-card fade-up">
+                    <span class="service-icon">🌸</span>
+                    <div class="service-num">04 — Event Snap</div>
+                    <div class="service-name">이벤트스냅</div>
+                    <div class="service-sub">계절과 함께, 특별한 모든 날에</div>
+                    <div class="service-items">
+                        <span class="service-tag">시즌스냅</span>
+                        <span class="service-tag">반려동물</span>
+                        <span class="service-tag">졸업·입학</span>
+                        <span class="service-tag">기업프로필</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-eyebrow">Portfolio</span>
+                <h2 class="section-title">작품 <em>갤러리</em></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="portfolio-tabs" id="portfolioTabs">
+                <button class="tab-btn active" onclick="filterPortfolio('all', this)">전체</button>
+                <button class="tab-btn" onclick="filterPortfolio('life', this)">라이프</button>
+                <button class="tab-btn" onclick="filterPortfolio('family', this)">패밀리</button>
+                <button class="tab-btn" onclick="filterPortfolio('wedding', this)">웨딩</button>
+                <button class="tab-btn" onclick="filterPortfolio('event', this)">이벤트</button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <div class="portfolio-item tall" data-cat="life">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-title">Profile</div>
+                            <div class="portfolio-info-sub">라이프스냅</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-cat="family">
+                    <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=600&q=80" alt="">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-title">Family</div>
+                            <div class="portfolio-info-sub">패밀리스냅</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-cat="wedding">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-title">Wedding</div>
+                            <div class="portfolio-info-sub">웨딩스냅</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-cat="event">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-title">Spring</div>
+                            <div class="portfolio-info-sub">시즌스냅</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item tall" data-cat="family">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-title">Maternity</div>
+                            <div class="portfolio-info-sub">만삭촬영</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-cat="life">
+                    <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=600&q=80" alt="">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <div class="portfolio-info-title">Couple</div>
+                            <div class="portfolio-info-sub">커플스냅</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section id="packages">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-eyebrow">Packages</span>
+                <h2 class="section-title" style="color:#fff;">촬영 <em>패키지</em></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="packages-grid">
+                <div class="package-card fade-up">
+                    <span class="package-badge">Essential</span>
+                    <div class="package-name">Lumière</div>
+                    <div class="package-name-kr">에센셜</div>
+                    <div class="package-price">₩30만</div>
+                    <div class="package-price-sub">부가세 포함 · 출장비 별도</div>
+                    <div class="package-divider"></div>
+                    <ul class="package-features">
+                        <li>촬영 시간 1시간</li>
+                        <li>보정 컷 20장 제공</li>
+                        <li>온라인 갤러리 공유</li>
+                        <li>고해상도 원본 파일</li>
+                    </ul>
+                    <button class="package-btn" onclick="scrollToBooking()">예약 문의</button>
+                </div>
+                <div class="package-card featured fade-up">
+                    <span class="package-badge">Most Popular</span>
+                    <div class="package-name">Éclat</div>
+                    <div class="package-name-kr">클래식</div>
+                    <div class="package-price">₩50만</div>
+                    <div class="package-price-sub">부가세 포함 · 출장비 별도</div>
+                    <div class="package-divider"></div>
+                    <ul class="package-features">
+                        <li>촬영 시간 2시간</li>
+                        <li>보정 컷 40장 제공</li>
+                        <li>온라인 갤러리 공유</li>
+                        <li>고해상도 원본 파일</li>
+                        <li>SNS용 편집본 10장</li>
+                        <li>장소 2곳 이동 가능</li>
+                    </ul>
+                    <button class="package-btn" onclick="scrollToBooking()">예약 문의</button>
+                </div>
+                <div class="package-card fade-up">
+                    <span class="package-badge">Premium</span>
+                    <div class="package-name">Prestige</div>
+                    <div class="package-name-kr">프리미엄</div>
+                    <div class="package-price">₩80만</div>
+                    <div class="package-price-sub">부가세 포함 · 출장비 별도</div>
+                    <div class="package-divider"></div>
+                    <ul class="package-features">
+                        <li>촬영 시간 3시간</li>
+                        <li>보정 컷 70장 제공</li>
+                        <li>온라인 갤러리 공유</li>
+                        <li>고해상도 원본 파일</li>
+                        <li>SNS용 편집본 20장</li>
+                        <li>장소 3곳 이동 가능</li>
+                        <li>앨범 제작 (30P 포함)</li>
+                    </ul>
+                    <button class="package-btn" onclick="scrollToBooking()">예약 문의</button>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:2rem; font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:rgba(255,255,255,0.35); letter-spacing:1px;">
+                * 패키지 가격은 촬영 종류에 따라 상이할 수 있습니다 · 상세 문의 환영
+            </p>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-eyebrow">Reviews</span>
+                <h2 class="section-title">고객 <em>후기</em></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card fade-up">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">돌잔치 촬영을 맡겼는데 아이의 모든 순간을 놓치지 않고 담아주셨어요. 사진 한 장 한 장이 너무 소중합니다.</p>
+                    <div class="review-author">김○○ 고객님</div>
+                    <div class="review-type">패밀리스냅 · 돌잔치</div>
+                </div>
+                <div class="review-card fade-up">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">프로필 사진 찍을 때 너무 긴장했는데 편안하게 이끌어주셔서 자연스러운 사진이 나왔어요. 정말 만족합니다!</p>
+                    <div class="review-author">이○○ 고객님</div>
+                    <div class="review-type">라이프스냅 · 프로필</div>
+                </div>
+                <div class="review-card fade-up">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">벚꽃 시즌스냅 너무 예뻐요. 빛 활용이 정말 탁월하시고, 결과물이 인스타에서 엄청난 반응이었습니다.</p>
+                    <div class="review-author">박○○ 고객님</div>
+                    <div class="review-type">이벤트스냅 · 시즌스냅</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING CTA -->
+    <section id="booking-cta">
+        <div class="booking-inner">
+            <span class="section-eyebrow">Contact & Booking</span>
+            <h2 class="booking-title">
+                당신의 <em>빛나는 순간</em>을<br>
+                함께 만들어요
+            </h2>
+            <p class="booking-desc">
+                문의부터 촬영까지, 세심하게 안내드립니다.<br>
+                카카오톡 또는 인스타그램으로 편하게 연락주세요.
+            </p>
+            <div class="booking-actions">
+                <a href="https://open.kakao.com/your-link" class="btn-kakao" target="_blank">
+                    💬 카카오톡 문의
+                </a>
+                <a href="https://instagram.com/lumierej" class="btn-insta" target="_blank">
+                    📸 인스타그램
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-name">Lumière<span>J</span></div>
+                    <div class="footer-brand-tag">모든 순간의 빛을 담다</div>
+                    <p class="footer-desc">
+                        서울 · 경기 · 전국 출장<br>
+                        Photographer 임준혁
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-col-title">Menu</div>
+                    <ul class="footer-links">
+                        <li><a href="#about">작가소개</a></li>
+                        <li><a href="#services">촬영종류</a></li>
+                        <li><a href="#portfolio">포트폴리오</a></li>
+                        <li><a href="#packages">패키지</a></li>
+                        <li><a href="#reviews">후기</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Contact</div>
+                    <p class="footer-contact-item">📷 @lumierej</p>
+                    <p class="footer-contact-item">💬 카카오톡 문의</p>
+                    <p class="footer-contact-item">📍 서울 · 경기 · 전국 출장</p>
+                    <br>
+                    <div class="footer-col-title" style="margin-top:1rem;">Sister Brand</div>
+                    <p class="footer-contact-item">
+                        <a href="https://capturebyj.github.io/lavella-wedding" style="color:var(--gold-light); text-decoration:none;">
+                            LaVella Wedding →
+                        </a><br>
+                        <span style="font-size:0.82rem; opacity:0.6;">본식 웨딩스냅 전문</span>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2025 LumiereJ · All Rights Reserved · capturebyj</div>
+                <div class="footer-lavella">sister brand: <a href="https://capturebyj.github.io/lavella-wedding">LaVella Wedding</a></div>
+            </div>
+        </div>
+    </footer>
+
+</div><!-- /mainSite -->
+
+<script>
+    // ENTER SITE
+    function enterSite() {
+        const landing = document.getElementById('landingPage');
+        const main = document.getElementById('mainSite');
+        landing.classList.add('hidden');
+        setTimeout(() => {
+            landing.style.display = 'none';
+            main.classList.add('visible');
+        }, 1000);
+    }
+
+    // NAV SCROLL
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('mainNav');
+        if (window.scrollY > 60) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    // MOBILE MENU
+    function toggleMenu() {
+        document.getElementById('hamburger').classList.toggle('open');
+        document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMenu() {
+        document.getElementById('hamburger').classList.remove('open');
+        document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    // PORTFOLIO FILTER
+    function filterPortfolio(cat, btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            if (cat === 'all' || item.dataset.cat === cat) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // SCROLL TO BOOKING
+    function scrollToBooking() {
+        document.getElementById('booking-cta').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // FADE UP ANIMATION
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
