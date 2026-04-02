@@ -49,7 +49,7 @@
         .landing-bg {
             position: absolute;
             inset: 0;
-            background: url('images/model1person/1653837215439.jpg') center/cover no-repeat;
+            background: url('images/1.landing page/1653837227224.jpg') center/cover no-repeat;
             opacity: 0.55;
             transform: scale(1.04);
             animation: slowZoom 14s ease-out forwards;
@@ -628,25 +628,22 @@
         }
 
         .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto;
-            gap: 1rem;
+            columns: 4;
+            column-gap: 0.6rem;
         }
         .portfolio-item {
             position: relative;
             overflow: hidden;
             cursor: pointer;
             background: var(--soft-gray);
+            break-inside: avoid;
+            margin-bottom: 0.6rem;
         }
-        .portfolio-item.tall { grid-row: span 2; }
         .portfolio-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            min-height: 280px;
-            transition: transform 0.6s ease;
+            height: auto;
             display: block;
+            transition: transform 0.6s ease;
         }
         .portfolio-item:hover img { transform: scale(1.06); }
         .portfolio-overlay {
@@ -1088,8 +1085,7 @@
             .nav-links { display: none; }
             .hamburger { display: flex; }
             .services-grid { grid-template-columns: 1fr; }
-            .portfolio-grid { grid-template-columns: 1fr 1fr; }
-            .portfolio-item.tall { grid-row: span 1; }
+            .portfolio-grid { columns: 2; }
             .reviews-grid { grid-template-columns: 1fr; }
             .lifecycle-strip { flex-direction: column; }
             .lifecycle-item::after { display: none; }
@@ -1166,7 +1162,7 @@
             </div>
         </div>
         <div class="hero-right">
-            <img src="images/couplesnap/1717764725251.jpg" alt="LumiereJ 대표 이미지">
+            <img src="images/2.hero main/1651763754518-18.jpg" alt="LumiereJ 대표 이미지">
             <div class="hero-right-overlay"></div>
             <div class="hero-float-badge">
                 <div class="badge-num">200+</div>
@@ -1216,7 +1212,7 @@
     <section id="about">
         <div class="about-inner">
             <div class="about-image-wrap fade-up">
-                <img src="images/model1person/1562681992783.jpg" alt="작가 임준혁">
+                <img src="images/3.photographer/1661782685612-1.jpg" alt="작가 임준혁">
             </div>
             <div class="about-text fade-up">
                 <p class="about-label">About the Photographer</p>
@@ -1327,87 +1323,94 @@
                 <button class="tab-btn" onclick="filterPortfolio('event', this)">이벤트</button>
             </div>
             <div class="portfolio-grid" id="portfolioGrid">
-                <div class="portfolio-item tall" data-cat="life">
-                    <img src="images/model1person/1562681985182.jpg" alt="1인 모델스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Profile</div>
-                            <div class="portfolio-info-sub">라이프스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="family">
-                    <img src="images/babysnap/1572451529420-4.jpg" alt="돌스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Baby</div>
-                            <div class="portfolio-info-sub">패밀리스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="life">
-                    <img src="images/couplesnap/1680857681317-3.jpg" alt="커플스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Couple</div>
-                            <div class="portfolio-info-sub">라이프스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="family">
-                    <img src="images/babysnap/1662503585321-1.jpg" alt="베이비스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Family</div>
-                            <div class="portfolio-info-sub">패밀리스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item tall" data-cat="life">
-                    <img src="images/model1person/1588599876736.jpg" alt="1인 모델스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Model</div>
-                            <div class="portfolio-info-sub">라이프스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="life">
-                    <img src="images/couplesnap/1682861020341-0.jpg" alt="커플스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Couple</div>
-                            <div class="portfolio-info-sub">라이프스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="family">
-                    <img src="images/babysnap/1666739597746-1.jpg" alt="베이비스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Baby</div>
-                            <div class="portfolio-info-sub">패밀리스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="life">
-                    <img src="images/model1person/1651417632386-0.jpg" alt="1인 모델스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Profile</div>
-                            <div class="portfolio-info-sub">라이프스냅</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-cat="life">
-                    <img src="images/couplesnap/1683556270086-0.jpg" alt="커플스냅">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                            <div class="portfolio-info-title">Couple</div>
-                            <div class="portfolio-info-sub">라이프스냅</div>
-                        </div>
-                    </div>
-                </div>
+                <!-- lifesnap1 30장 -->
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model1.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model2.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model3.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model4.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model5.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model6.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model7.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model8.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model9.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model10.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model11.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model12.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model13.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model14.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model15.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model16.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model17.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model18.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model19.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model20.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model21.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model22.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model23.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model24.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model25.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model26.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model27.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model28.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model29.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap1/model30.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Profile</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <!-- lifesnap2 커플 19장 -->
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-3.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-5.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-6.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-9.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-10.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-11.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-13.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1680857681317-14.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1682861020341-0.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1682861020341-2.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1682861020341-6.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1682861020341-8.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-0.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-1.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-4.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-5.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-7.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-9.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="life"><img src="images/4.portfolio/lifesnap2/1683556270086-11.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Couple</div><div class="portfolio-info-sub">라이프스냅</div></div></div></div>
+                <!-- familysnap 11장 -->
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family1.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family2.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family3.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family4.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family5.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family6.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family7.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/family8.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Family</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/1572451529420-19.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Baby</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/1572451529420-7.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Baby</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/1662503791366-8.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Baby</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="family"><img src="images/4.portfolio/familysnap/1662503791366-9.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Baby</div><div class="portfolio-info-sub">패밀리스냅</div></div></div></div>
+                <!-- wedding 19장 -->
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1716328156175.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1716328165333.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1716328169407.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1716328176429.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1716934359632.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1716934359759.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764725251.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764725391.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764725899.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764725992.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764726062.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764726224.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764726260.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764726405.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1717764726449.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1719163491952.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1719163492037.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1719163492173.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="wedding"><img src="images/4.portfolio/wedding/1719163492263.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Wedding</div><div class="portfolio-info-sub">웨딩스냅</div></div></div></div>
+                <!-- eventsnap 3장 -->
+                <div class="portfolio-item" data-cat="event"><img src="images/4.portfolio/eventsnap/eventsnap1.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Event</div><div class="portfolio-info-sub">이벤트스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="event"><img src="images/4.portfolio/eventsnap/eventsnap2.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Event</div><div class="portfolio-info-sub">이벤트스냅</div></div></div></div>
+                <div class="portfolio-item" data-cat="event"><img src="images/4.portfolio/eventsnap/eventsnap3.jpg" alt=""><div class="portfolio-overlay"><div class="portfolio-info"><div class="portfolio-info-title">Event</div><div class="portfolio-info-sub">이벤트스냅</div></div></div></div>
             </div>
         </div>
     </section>
@@ -1607,7 +1610,6 @@
         document.getElementById('mobileMenu').classList.remove('open');
     }
 
-    // PORTFOLIO FILTER
     function filterPortfolio(cat, btn) {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
