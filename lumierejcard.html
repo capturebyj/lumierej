@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>LumiereJ — 모든 순간의 빛을 담다</title>
+
+    <!-- OG Tags -->
+    <meta property="og:title" content="LumiereJ · 라이프스냅 웨딩스냅 패밀리스냅">
+    <meta property="og:description" content="모든 순간의 빛을 담다 · 라이프·웨딩·패밀리스냅 전문">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://capturebyj.github.io/lumierej/lumierejcard">
+    <meta property="og:image" content="https://capturebyj.github.io/lumierej/images/lumierej_profile.png">
+    <meta property="og:image:width" content="1080">
+    <meta property="og:image:height" content="1080">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://capturebyj.github.io/lumierej/images/lumierej_profile.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ivory: #FAF7F2;
+            --ivory2: #F3EDE4;
+            --rose-gold: #C4927A;
+            --rose-gold-light: #E8C4B0;
+            --rose-gold-pale: #F5E6DE;
+            --champagne: #E8D5B7;
+            --gold: #C4924A;
+            --charcoal: #2A2825;
+            --warm-gray: #7A6F68;
+            --soft: #EDE4DC;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html, body {
+            min-height: 100vh;
+            background: var(--ivory2);
+            font-family: 'Noto Serif KR', 'Cormorant Garamond', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+        }
+
+        /* 배경 그라디언트 */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 10%, rgba(196,146,122,0.1) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 60% at 85% 90%, rgba(196,146,74,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .card-wrap {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        /* 메인 카드 */
+        .card {
+            background: #fff;
+            border: 1px solid rgba(196,146,122,0.25);
+            box-shadow:
+                0 2px 8px rgba(42,40,37,0.06),
+                0 12px 48px rgba(196,146,122,0.1),
+                0 24px 80px rgba(42,40,37,0.06);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 헤더 */
+        .card-header {
+            background: var(--charcoal);
+            padding: 3rem 2.5rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--rose-gold) 30%, var(--gold) 70%, transparent 100%);
+        }
+
+        /* 배경 빛 효과 */
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(196,146,122,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .brand-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.68rem;
+            letter-spacing: 6px;
+            color: rgba(196,146,122,0.7);
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: #fff;
+            letter-spacing: 8px;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-name span { color: var(--rose-gold-light); }
+
+        .brand-rule {
+            width: 36px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+            margin: 1rem auto;
+            opacity: 0.7;
+        }
+
+        .brand-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 카테고리 태그 */
+        .brand-cats {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-cat {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: rgba(232,196,176,0.65);
+            border: 1px solid rgba(196,146,122,0.25);
+            padding: 0.2rem 0.7rem;
+            text-transform: uppercase;
+        }
+
+        /* 연락처 섹션 */
+        .card-body {
+            padding: 0.5rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.1rem 2rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196,146,122,0.1);
+            transition: background 0.25s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--rose-gold);
+            transform: scaleY(0);
+            transition: transform 0.25s ease;
+        }
+        .contact-item:hover { background: var(--rose-gold-pale); }
+        .contact-item:hover::before { transform: scaleY(1); }
+        .contact-item:last-child { border-bottom: none; }
+
+        .contact-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--ivory2);
+            border: 1px solid rgba(196,146,122,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+        .contact-item:hover .contact-icon {
+            background: var(--rose-gold);
+            border-color: var(--rose-gold);
+        }
+        .contact-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--rose-gold);
+            transition: fill 0.25s ease;
+        }
+        .contact-item:hover .contact-icon svg { fill: #fff; }
+
+        .contact-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .contact-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--rose-gold);
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+        .contact-value {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 0.88rem;
+            color: var(--charcoal);
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-arrow {
+            font-size: 0.7rem;
+            color: rgba(196,146,122,0.4);
+            flex-shrink: 0;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+        .contact-item:hover .contact-arrow {
+            transform: translateX(3px);
+            color: var(--rose-gold);
+        }
+
+        /* 복사 버튼 (전화번호) */
+        .copy-btn {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.62rem;
+            letter-spacing: 2px;
+            color: rgba(196,146,122,0.5);
+            background: none;
+            border: 1px solid rgba(196,146,122,0.2);
+            padding: 0.2rem 0.6rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.25s;
+            text-transform: uppercase;
+        }
+        .copy-btn:hover {
+            background: var(--rose-gold);
+            border-color: var(--rose-gold);
+            color: #fff;
+        }
+        .copy-btn.copied {
+            background: #6B9E7A;
+            border-color: #6B9E7A;
+            color: #fff;
+        }
+
+        /* 홈페이지 버튼 */
+        .card-footer {
+            padding: 1.5rem 2rem;
+            background: var(--ivory);
+            border-top: 1px solid rgba(196,146,122,0.12);
+        }
+
+        .website-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            padding: 1rem;
+            background: var(--charcoal);
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.82rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .website-btn:hover {
+            background: var(--rose-gold);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(196,146,122,0.3);
+        }
+        .website-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: rgba(255,255,255,0.6);
+        }
+
+        /* 하단 장식 */
+        .card-bottom {
+            text-align: center;
+            padding: 1.2rem;
+            background: var(--ivory2);
+            border-top: 1px solid rgba(196,146,122,0.08);
+        }
+        .card-bottom-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: rgba(196,146,122,0.45);
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        /* 토스트 메시지 */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--charcoal);
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding: 0.8rem 1.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card-wrap">
+    <div class="card">
+
+        <!-- 헤더 -->
+        <div class="card-header">
+            <p class="brand-eyebrow">Photography</p>
+            <h1 class="brand-name">Lumière<span>J</span></h1>
+            <div class="brand-rule"></div>
+            <p class="brand-tagline">모든 순간의 빛을 담다</p>
+            <div class="brand-cats">
+                <span class="brand-cat">라이프스냅</span>
+                <span class="brand-cat">웨딩스냅</span>
+                <span class="brand-cat">패밀리스냅</span>
+                <span class="brand-cat">이벤트스냅</span>
+            </div>
+        </div>
+
+        <!-- 연락처 -->
+        <div class="card-body">
+
+            <!-- 전화번호 -->
+            <div class="contact-item" onclick="callPhone()">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">010-3083-0803</div>
+                </div>
+                <button class="copy-btn" id="copyBtn" onclick="copyPhone(event)">복사</button>
+            </div>
+
+            <!-- 이메일 -->
+            <a class="contact-item" href="mailto:imjunphoto@naver.com">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">imjunphoto@naver.com</div>
+                </div>
+                <span class="contact-arrow">→</span>
+            </a>
+
+            <!-- 카카오톡 -->
+            <a class="contact-item" href="#" id="kakaoLink">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.92 2 11.72c0 3.03 1.77 5.7 4.45 7.28L5.5 22l3.77-1.97C10.14 20.34 11.05 20.5 12 20.5c5.52 0 10-3.92 10-8.78C22 6.92 17.52 3 12 3z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">KakaoTalk</div>
+                    <div class="contact-value">카카오톡 채널 문의</div>
+                </div>
+                <span class="contact-arrow">→</span>
+            </a>
+
+            <!-- 인스타그램 -->
+            <a class="contact-item" href="#" id="instaLink">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">Instagram</div>
+                    <div class="contact-value">@lumierej</div>
+                </div>
+                <span class="contact-arrow">→</span>
+            </a>
+
+        </div>
+
+        <!-- 홈페이지 버튼 -->
+        <div class="card-footer">
+            <a href="https://capturebyj.github.io/lumierej" class="website-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                홈페이지 바로가기
+            </a>
+        </div>
+
+        <!-- 하단 -->
+        <div class="card-bottom">
+            <p class="card-bottom-text">Seoul · Gyeonggi · Nationwide</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- 토스트 -->
+<div class="toast" id="toast">전화번호가 복사되었습니다</div>
+
+<script>
+    function callPhone() {
+        window.location.href = 'tel:010-3083-0803';
+    }
+
+    function copyPhone(e) {
+        e.stopPropagation();
+        navigator.clipboard.writeText('010-3083-0803').then(() => {
+            const btn = document.getElementById('copyBtn');
+            const toast = document.getElementById('toast');
+            btn.textContent = '완료';
+            btn.classList.add('copied');
+            toast.classList.add('show');
+            setTimeout(() => {
+                btn.textContent = '복사';
+                btn.classList.remove('copied');
+                toast.classList.remove('show');
+            }, 2000);
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = '010-3083-0803';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        });
+    }
+</script>
+</body>
+</html>
