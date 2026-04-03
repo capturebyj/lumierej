@@ -618,9 +618,9 @@
 
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -940,8 +940,7 @@
         @media (max-width: 1024px) {
             .hero-title { font-size: 3.2rem; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .packages-grid { grid-template-columns: 1fr; max-width: 480px; }
-            .reviews-grid { grid-template-columns: 1fr 1fr; }
+            .packages-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }            .reviews-grid { grid-template-columns: 1fr 1fr; }
             .about-inner { grid-template-columns: 1fr; gap: 3.5rem; }
             .about-image-wrap { max-width: 360px; }
             .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -981,7 +980,7 @@
     <div class="landing-bg"></div>
     <div class="landing-veil"></div>
     <div class="landing-content">
-        <p class="landing-eyebrow">Photographer · 임준혁</p>
+        <p class="landing-eyebrow">Lifestyle · Wedding · Family</p>
         <h1 class="landing-logo">Lumière<span>J</span></h1>
         <div class="landing-rule"></div>
         <p class="landing-tagline">모든 순간의 빛을 담다</p>
@@ -1053,17 +1052,17 @@
             <div class="fade-up">
                 <p class="about-label">About the Photographer</p>
                 <h2 class="about-heading">
-                    빛을 찾는 사람,<br>
-                    <em>임준혁</em>입니다
+                    빛을 찾는<br>
+                    <em>사진작가</em>입니다
                 </h2>
                 <p class="about-body">
                     Lumière는 프랑스어로 '빛'을 의미합니다.<br><br>
-                    저는 매 순간 그 장면만의 빛을 찾습니다.<br>
+                    매 순간 그 장면만의 빛을 찾습니다.<br>
                     아이의 웃음에서 번지는 따뜻한 빛,<br>
                     두 사람이 마주보는 순간의 황금빛,<br>
                     가족이 함께 웃는 저녁의 부드러운 빛.<br><br>
                     그 빛을 당신의 기억 속에 영원히 남기는 것,<br>
-                    그것이 제가 카메라를 드는 이유입니다.
+                    그것이 카메라를 드는 이유입니다.
                 </p>
             </div>
         </div>
@@ -1250,7 +1249,7 @@
                     <div class="package-divider"></div>
                     <ul class="package-features">
                         <li>촬영 시간 1시간</li>
-                        <li>보정 컷 20장 제공</li>
+                        <li>보정 컷 30장 제공</li>
                         <li>온라인 갤러리 공유</li>
                         <li>고해상도 원본 파일</li>
                     </ul>
@@ -1264,11 +1263,25 @@
                     <div class="package-divider"></div>
                     <ul class="package-features">
                         <li>촬영 시간 2시간</li>
-                        <li>보정 컷 40장 제공</li>
+                        <li>보정 컷 50장 제공</li>
                         <li>온라인 갤러리 공유</li>
                         <li>고해상도 원본 파일</li>
-                        <li>SNS용 편집본 10장</li>
                         <li>장소 2곳 이동 가능</li>
+                    </ul>
+                    <button class="package-btn" onclick="document.getElementById('booking-cta').scrollIntoView({behavior:'smooth'})">예약 문의</button>
+                </div>
+                <div class="package-card fade-up">
+                    <span class="package-badge">Premium</span>
+                    <div class="package-name">프리미엄</div>
+                    <div class="package-price">₩60만</div>
+                    <div class="package-price-sub">부가세 포함 · 출장비 별도</div>
+                    <div class="package-divider"></div>
+                    <ul class="package-features">
+                        <li>촬영 시간 3시간</li>
+                        <li>보정 컷 70장 제공</li>
+                        <li>온라인 갤러리 공유</li>
+                        <li>고해상도 원본 파일</li>
+                        <li>장소 3곳 이동 가능</li>
                     </ul>
                     <button class="package-btn" onclick="document.getElementById('booking-cta').scrollIntoView({behavior:'smooth'})">예약 문의</button>
                 </div>
@@ -1323,8 +1336,8 @@
                 카카오톡 또는 인스타그램으로 편하게 연락주세요.
             </p>
             <div class="booking-actions">
-                <a href="https://open.kakao.com/your-link" class="btn-kakao" target="_blank">카카오톡 문의</a>
-                <a href="https://instagram.com/lumierej" class="btn-insta" target="_blank">인스타그램</a>
+                <a href="#" class="btn-kakao">카카오톡 문의</a>
+                <a href="#" class="btn-insta">인스타그램</a>
             </div>
         </div>
     </section>
@@ -1336,7 +1349,7 @@
                 <div>
                     <div class="footer-brand-name">Lumière<span>J</span></div>
                     <div class="footer-brand-tag">모든 순간의 빛을 담다</div>
-                    <p class="footer-desc">서울 · 경기 · 전국 출장<br>Photographer 임준혁</p>
+                    <p class="footer-desc">서울 · 경기 · 전국 출장<br>LumiereJ Photography</p>
                 </div>
                 <div>
                     <div class="footer-col-title">Menu</div>
